@@ -1,12 +1,12 @@
 # MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.11.0-%23EE4C2C.svg?style=&logo=PyTorch&logoColor=white)](https://pytorch.org/)
 [![Python](https://img.shields.io/badge/Python-3.7%20|%203.8%20|%203.9-blue.svg?style=&logo=python&logoColor=ffdd54)](https://www.python.org/downloads/)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/gres-generalized-referring-expression-1/generalized-referring-expression-segmentation)](https://paperswithcode.com/sota/generalized-referring-expression-segmentation?p=gres-generalized-referring-expression-1)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/mevis-a-large-scale-benchmark-for-video/referring-video-object-segmentation-on-mevis)](https://paperswithcode.com/sota/referring-video-object-segmentation-on-mevis?p=mevis-a-large-scale-benchmark-for-video)
 
-**[🏠[Project page]](https://henghuiding.github.io/MeViS/)** &emsp; **[📄[arXiv]](https://arxiv.org/abs/)**  &emsp; **[📄[PDF]](https://drive.google.com/file/d/1WRanGRaYPpaNfrwq4xRq0sfmiJLSr9-b/view?usp=sharing)** &emsp; **[🔥[Dataset Download]](https://codalab.lisn.upsaclay.fr/competitions/15094)** &emsp; **[🔥[Evaluation Server]](https://codalab.lisn.upsaclay.fr/competitions/15094)**
+**[🏠[Project page]](https://henghuiding.github.io/MeViS/)** &emsp; **[📄[arXiv]](https://arxiv.org/abs/2308.08544)**  &emsp; **[📄[PDF]](https://drive.google.com/file/d/1WRanGRaYPpaNfrwq4xRq0sfmiJLSr9-b/view?usp=sharing)** &emsp; **[🔥[Dataset Download]](https://codalab.lisn.upsaclay.fr/competitions/15094)** &emsp; **[🔥[Evaluation Server]](https://codalab.lisn.upsaclay.fr/competitions/15094)**
 
 This repository contains code for **ICCV2023** paper:
-> [MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions](https://arxiv.org/abs/)  
+> [MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions](https://arxiv.org/abs/2308.08544)  
 > Henghui Ding,  Chang Liu,  Shuting He,  Xudong Jiang,  Chen Change Loy  
 > ICCV 2023
 
