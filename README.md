@@ -200,7 +200,7 @@ Note: We also support training ReferFormer by providing [`ReferFormer_dataset.py
 
 Our results on Val<sup>u</sup> set and Val set of MeViS dataset.
 * Val<sup>u</sup> set is used for offline evaluation by userself, like doing ablation study
-* Val set is used for CodaLab online evaluation by MeViS dataset orgnizers
+* Val set is used for CodaLab online evaluation by MeViS dataset organizers
 <table border="0.6">
 <tbody>
     <tr>
