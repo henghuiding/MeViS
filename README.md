@@ -164,7 +164,8 @@ Please see [INSTALL.md](https://github.com/henghuiding/MeViS/blob/main/INSTALL.m
 
 ## Inference
 
-Obtain the output masks:
+###  1. Val<sup>u</sup> set
+Obtain the output masks of Val<sup>u</sup> set:
 ```
 python train_net_lmpm.py \
     --config-file configs/lmpm_SWIN_bs8.yaml \
@@ -172,10 +173,24 @@ python train_net_lmpm.py \
     MODEL.WEIGHTS [path_to_weights] \
     OUTPUT_DIR [output_dir]
 ```
-Obtain the results on Val<sup>u</sup>:
+Obtain the J&F results on Val<sup>u</sup> set:
 ```
 python tools/eval_mevis.py
 ```
+###  2. Val set
+Obtain the output masks of Val set for [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/15094) online evaluation:
+```
+python train_net_lmpm.py \
+    --config-file configs/lmpm_SWIN_bs8.yaml \
+    --num-gpus 8 --dist-url auto --eval-only \
+    MODEL.WEIGHTS [path_to_weights] \
+    OUTPUT_DIR [output_dir] DATASETS.TEST '("mevis_test",)'
+```
+### CodaLab Evaluation Submission Guideline
+
+The submission format should be a **.zip** file containing the predicted .PNG results of the **Val set** (for current competition stage).
+A submission example named *sample_submission_valid.zip* can be found from the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/15094).
+
 ## Training
 
 Firstly, download the backbone weights (`model_final_86143f.pkl`) and convert it using the script:
