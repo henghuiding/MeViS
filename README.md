@@ -190,6 +190,29 @@ python train_net_lmpm.py \
 
 The submission format should be a **.zip** file containing the predicted .PNG results of the **Val set** (for current competition stage).
 A submission example named *sample_submission_valid.zip* can be found from the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/15094).
+```
+sample_submission_valid                // submission folder name
+├── 0ab4afe7fb46                       // video folder name
+│   ├── 0                              // expression_id folder name
+│   │   ├── 00000.png                  // .png files
+│   │   ├── 00001.png
+│   │   └── ....
+│   │
+│   ├── 1
+│   │   └── 00000.png
+│   │   └── ....
+│   │
+│   └── ....
+│ 
+├── 0fea0cb75a25
+│   ├── 0                              
+│   │   ├── 00000.png
+│   │   └── ....
+│   │
+│   └── ....
+│
+└── ....                      
+```
 
 ## Training
 
