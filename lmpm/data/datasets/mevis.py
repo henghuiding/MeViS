@@ -93,7 +93,6 @@ def load_mevis_json(image_root, json_file):
                 frame_objs = []
                 for x, obj_id in zip(anno_ids, obj_ids):
                     obj = {}
-                    import pdb; pdb.set_trace()
                     segm = mask_dict[x][frame_idx]
                     if not segm:
                         num_instances_without_valid_segmentation += 1
