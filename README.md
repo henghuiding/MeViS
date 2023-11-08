@@ -197,10 +197,10 @@ zip -r ../xxx.zip *
 ```
 A submission example named *sample_submission_valid.zip* can be found from the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/15094).
 ```
-sample_submission_valid.zip         // xxx.zip file, which directly packages the 140 val video folders
-├── 0ab4afe7fb46                    // video folder name
-│   ├── 0                           // expression_id folder name
-│   │   ├── 00000.png               // .png files
+sample_submission_valid.zip       // xxx.zip file, which directly packages the 140 val video folders
+├── 0ab4afe7fb46                  // video folder name
+│   ├── 0                         // expression_id folder name
+│   │   ├── 00000.png             // .png files
 │   │   ├── 00001.png
 │   │   └── ....
 │   │
