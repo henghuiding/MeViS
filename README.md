@@ -189,12 +189,18 @@ python train_net_lmpm.py \
 ### CodaLab Evaluation Submission Guideline
 
 The submission format should be a **.zip** file containing the predicted .PNG results of the **Val set** (for current competition stage).
+
+You can use following command to prepare .zip submission file
+```
+cd [output_dir]
+zip -r ../xxx.zip *
+```
 A submission example named *sample_submission_valid.zip* can be found from the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/15094).
 ```
-sample_submission_valid.zip            // xxx.zip file, which directly package the 140 val video folders
-├── 0ab4afe7fb46                       // video folder name
-│   ├── 0                              // expression_id folder name
-│   │   ├── 00000.png                  // .png files
+sample_submission_valid.zip         // xxx.zip file, which directly packages the 140 val video folders
+├── 0ab4afe7fb46                    // video folder name
+│   ├── 0                           // expression_id folder name
+│   │   ├── 00000.png               // .png files
 │   │   ├── 00001.png
 │   │   └── ....
 │   │
