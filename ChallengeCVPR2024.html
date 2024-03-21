@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      border-collapse: collapse !important;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    td img {
+      width: 224px; /* 设置图片宽度 */
+      height: auto; /* 自适应高度 */
+      display: block; /* 去除默认的图像下边距 */
+    }
+
+    table, th, td {
+      border: none !important;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    .smallGrayText {
+      font-size: 12px; /* 设置字体大小为12像素 */
+      color: #808080; /* 设置颜色为灰色，可以使用十六进制、RGB或颜色名称 */
+    }
+    .rounded-image {
+      width: 70%; /* 设置图片宽度 */
+      height: 70%; /* 设置图片高度，保证是正方形 */
+      border-radius: 50%; /* 将边框半径设置为50%，使其呈现为圆形 */
+      overflow: hidden; /* 隐藏超出边界的内容 */
+    }
+
+    .rounded-image img {
+      width: 100%; /* 使图像充满其父容器 */
+      height: auto; /* 自适应高度 */
+      display: block; /* 去除默认的图像下边距 */
+    }
+  </style>
+  <meta charset="utf-8">
+  <link rel="author" href="https://henghuiding.github.io/MeViS">
+  <title>1st MeViS Chanllenge</title>
+  <meta name="description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
+  <meta name="keywords" content="MeViS; Video Segmentation with Motion Expressions; Referring Video Segmentation; Generalized Referring Expression Segmentation; MeViS Dataset; ICCV 2023; Henghui Ding; Nanyang Technological University; Computer Vision">
+  
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
+  <meta property="og:title" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions"/>
+  <meta property="og:description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions"/>
+  <meta property="og:url" content="https://henghuiding.github.io/MeViS"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
+  <meta name="twitter:description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="MeViS; Referring Image Segmentation; Generalized Referring Expression Segmentation; Generalized Referring Expression Comprehension; MeViS Dataset; ICCV 2023; ; Henghui Ding; Nanyang Technological University; Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  
+  <link rel="icon" type="image/x-icon" href="static/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="static/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <meta name="google-site-verification" content="RHqlM-yRssUYgbykhtd0uguPnqkhTvwJw-aLE04B4KQ" />
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://henghuiding.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Challenges
+        </a>
+        <div class="navbar-dropdown">
+           <a class="navbar-item" href="https://henghuiding.github.io/MOSE/ChallengeCVPR2024">
+            1st MOSE Challenge on CVPR 2024
+          </a>
+          <a class="navbar-item" href="https://henghuiding.github.io/MeViS/ChallengeCVPR2024">
+            1st MeViS Challenge on CVPR 2024
+          </a>
+          <a class="navbar-item" href="https://henghuiding.github.io/MOSE">
+            MOSE Dataset Page
+          </a>
+          <a class="navbar-item" href="https://henghuiding.github.io/MeViS">
+            MeViS Dataset Page
+          </a>
+          <a class="navbar-item" href="https://henghuiding.github.io/GRES">
+            GRES Dataset Page
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">The 1st Motion Expression Video Segmentation Challenge</h1>
+            <div class="is-size-4 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://cvpr.thecvf.com/Conferences/2024/workshop-list" target="_blank">Workshop in conjunction with CVPR 2024, Seattle, USA</a></span>
+                <span class="author-block">
+                 
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+<!--                       <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span> -->
+           <!--            </a>
+                    </span> -->
+
+                    <span class="link-block">
+                      <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/https://openaccess.thecvf.com/content/ICCV2023/papers/Ding_MeViS_A_Large-scale_Benchmark_for_Video_Segmentation_with_Motion_Expressions_ICCV_2023_paper.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>PDF</span>
+                    </a>
+                  </span>
+
+                    <!-- Supplementary PDF link -->
+                    <span class="link-block">
+                      <a href="https://github.com/henghuiding/MeViS" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+<!--                       <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span> -->
+                      <span>🔥Dataset</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                      <a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+<!--                       <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span> -->
+                      <span>🔥Eval Server</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+<!--                   <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span> -->
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2308.08544" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p style="text-align:justify; text-justify:inter-ideograph;">
+      The 1st MeViS challenge will be held in conjunction with <a href="https://cvpr.thecvf.com/" target="_blank">CVPR 2024</a> <a href="https://www.vspwdataset.com/Workshop2024.html" target="_blank"><b><font color="#FF6403">PVUW Workshop</font></b></a> in Seattle, USA. In this edition of the workshop and challenge, we focus on referring video segmentation with motion expressions, i.e., segmenting objects in video content based on a sentence describing the motion of the objects. MeViS contains 2,006 video clips and 443k high-quality object segmentation masks, with 28,570 sentences indicating 8,171 objects in complex environments. The goal of MeViS dataset is to provide a platform that enables the development of effective language-guided video segmentation algorithms that leverage motion expressions as a primary cue for object segmentation in complex video scenes. The workshop will culminate in a round table discussion, in which speakers will debate the future of video object representations.
+    </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+</div>
+
+
+<section class="section" id="Dates">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Dates</h2>
+      <font style="line-height:2;">
+      &nbsp; ● <b>1 Feb 2024</b>: Release the training and validation dataset, check <a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank">[here]</a>.<br>
+
+      &nbsp; ● <b>1 Feb 2024</b>: Setup the submission server on CodaLab and open the submission of the validation results.<br>
+
+      &nbsp; ● <b>8 Apr 2024</b>: Workshop paper submission deadline.<br>
+
+      &nbsp; ● <b>12 Apr 2024</b>: Notification to authors of workshop paper.<br>
+
+      &nbsp; ● <b>15 May 2024</b>: Release the test dataset and open the submission of the test results.<br>
+
+      &nbsp; ● <b>30 May 2024</b>: The final competition results will be announced and high-performance teams will be invited.<br>
+
+      &nbsp; ● <b>17 Jun 2024</b>: The workshop begins.<br>
+      </font>
+      
+    </div>
+</section>
+
+
+<section class="section" id="Dates">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Call for Papers</h2>
+      <font style="line-height:2;">
+This workshop includes workshop papers, covering but not limit to the following topics: <br>
+
+&nbsp; ● Semantic/panoptic segmentation for images/videos <br>
+
+&nbsp; ● Video object/instance segmentation <br>
+
+&nbsp; ● Efficient computation for video scene parsing  <br>
+
+&nbsp; ● Object tracking <br>
+
+&nbsp; ● Language-guided segmentation <br>
+
+&nbsp; ● Semi-supervised recognition in videos <br>
+
+&nbsp; ● New metrics to evaluate the quality of video scene parsing results <br>
+
+&nbsp; ● Real-world video applications, including autonomous driving, indoor robotics, visual navigation, etc. <br><br>
+
+
+<b>Submission</b>: We invite authors to submit unpublished papers (<a href="https://cvpr.thecvf.com/Conferences/2024/AuthorGuidelines" target="_blank">8-page CVPR format</a>) to our workshop, to be presented at a poster session upon acceptance. All submissions will go through a double-blind review process. Accepted papers will be published in the official CVPR Workshops proceedings and the Computer Vision Foundation (CVF) Open Access archive. All contributions must be submitted (along with supplementary materials, if any) at <a href="https://cmt3.research.microsoft.com/PVUW2024/" target="_blank">this link</a>.<br>
+
+
+<b>Paper Submission Dates:</b> <br>
+
+&nbsp; ● Workshop paper submission deadline: 8 April 2024 (23:59 PST)<br>
+
+&nbsp; ● Notification to authors: 12 April 2024<br>
+
+&nbsp; ● Camera ready deadline: 14 April 2024<br>
+
+</font>
+      
+    </div>
+</section>
+
+    <section class="section" id="Visualization">
+    <div class="container is-max-desktop content">
+      <h2 class="title">MeViS Dataset Examples</h2>
+     <table >
+      <tbody>
+      <tr align="center">
+        <img src="static/DemoImages/webp/bird.webp" alt="0442a954" width="224" height="126" />&nbsp;
+        <img src="static/DemoImages/webp/Cat.webp" alt="d321dde4" width="224" height="126" />&nbsp;
+        <img src="static/DemoImages/webp/coin.webp" alt="02221fb0" width="224" height="126" />&nbsp;
+        <img src="static/DemoImages/webp/boat.webp" alt="bbe97d18" width="224" height="126" />&nbsp;
+        </tr>
+  </tbody>
+</table>
+      </center>
+    </div>
+</section>
+
+
+
+
+
+<section class="section" id="Evaluation">
+  <div class="container is-max-desktop content">
+  <h2 class="title">Evaluation</h2>
+    <center>
+        <li li class="mygrid">
+          <div class="mygriditem">
+        <a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank" class="imageLink"><img src="static/DemoImages/codalab.png"></a><br><a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank">Online Evaluation (🔥ready now!)</a>
+        </div>
+        </li>
+    </center><br><br>
+
+    <font style="line-height:2;">
+    ● We use Region Jaccard <b><i>J</i></b>, Boundary F measure <b><i>F</i></b>, and their mean <b><i>J&F</i></b> as the evaluation metrics.<br>
+
+    ● For the validation sets, the expressions are released to indicate the objects that are considered in evaluation. <br>
+
+    ● The validation set online evaluation server is <a href="https://codalab.lisn.upsaclay.fr/competitions/15094">[here]</a> for daily evaluation. <br>
+
+    ● The test set online evaluation server will be open during the competition period only (TBD). <br>
+
+    <!-- ● <font color="#FF6403">For urgent cases before online server is ready, you could send your predictions to us and we will return the <b><i>J&F</i></b> results to you.</font> -->
+    </font>
+  </div>
+</section>
+
+<section class="section" id="organizers">
+    <div class="container is-max-desktop content">
+      <h2 class="title">MeViS Challenge Organizers</h2>
+      <table >
+  <tbody>
+    <tr align="center">
+      <td ><div class="rounded-image"><img src="static/people/HenghuiDing.jpg" alt="Henghui Ding"/></div></td>
+      <td ><div class="rounded-image"><img src="static/people/LiuChang.jpg" alt="Chang Liu"/></div></td>
+      <td ><div class="rounded-image"><img src="static/people/ShutingHe.jpg" alt="Shuting He"/></div></td>
+      <td ><div class="rounded-image"><img src="static/people/JiangXudong.jpg"  alt="Xudong Jiang"/></div></td>
+      <td ><div class="rounded-image"><img src="static/people/CCLoy.jpeg"  alt="Philip H.S. Torr"/></div></td>
+
+    </tr>
+    <tr align="center">
+      <td><strong><a href="https://henghuiding.github.io/" target="_blank">Henghui Ding</a></strong><br/><p class="smallGrayText"><b>Primary Organizer</b><br> Nanyang Technological University</p></td>
+      <td><strong><a href="https://scholar.google.com/citations?hl=en&authuser=1&user=XlQP0GIAAAAJ" target="_blank">Chang Liu</a></strong><br/><p class="smallGrayText"><b>Primary Organizer</b><br> Nanyang Technological University</p></td>
+      <td><strong><a href="https://heshuting555.github.io/" target="_blank">Shuting He</a></strong><br/><p class="smallGrayText">Nanyang Technological University</p></td>
+      <td><strong><a href="https://personal.ntu.edu.sg/exdjiang/" target="_blank">Xudong Jiang</a></strong><br/><p class="smallGrayText">Nanyang Technological University</p></td>
+      <td><strong><a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a></strong><br/><p class="smallGrayText">Nanyang Technological University</p></td>
+    </tr>
+  </tbody>
+</table>
+      
+    </div>
+</section>
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      Please consider to cite MeViS if it helps your research.
+      <pre><code>@inproceedings{MeViS,
+  title={{MeViS}: A Large-scale Benchmark for Video Segmentation with Motion Expressions},
+  author={Ding, Henghui and Liu, Chang and He, Shuting and Jiang, Xudong and Loy, Chen Change},
+  booktitle={ICCV},
+  year={2023}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+<section class="section" id="License">
+  <div class="container is-max-desktop content">
+  <h2 class="title">License</h2>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"  target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></br>
+MeViS is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 License</a>. The data of MeViS is released for non-commercial research purpose only.
+  <!-- </center> -->
+    </div>
+</section>
+
+
+<a href="https://clustrmaps.com/site/1bsv6" title="Visit tracker" target="_blank"><img src="//www.clustrmaps.com/map_v2.png?d=fiu-XVyK-5sfXg64QJNSVH52ERrgMlMTVeNpayx5wr0&cl=ffffff" height="1" width="1"/ style="display:block;margin-top:5px;margin-bottom:0px;margin-left:auto;text-align:right"></a>
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+
+            <center><font size=2>© Henghui Ding | Last updated: 12/03/2024</font></center>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
