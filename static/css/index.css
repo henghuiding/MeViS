@@ -1,0 +1,194 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  padding: 20px;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+.slider-pagination .slider-page {
+  background: #000000;
+}
+
+.eql-cntrb { 
+  font-size: smaller;
+}
+
+/* Display lists in a grid of fixed size. This is useful when lists have associated images. */
+/* Idea from http://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/ */
+li.grid
+{
+    width: auto;
+    height: 100px;
+    /* border: 1px solid #000; */
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    zoom: 1;
+    *display: inline;
+    _height: 100px;
+}
+/* Formatting for each item in a 2D grid. This is used typically in the downloads section. */
+.griditem
+{
+    font-size: 10pt;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+.griditem img
+{
+    text-align: center;
+    height:100px;
+    width:auto;
+    border: 1px solid #eee;
+    box-shadow: 0px 0px 2px #444444;
+}
+li.mygrid
+{
+    width: auto;
+    height: 100px;
+    /* border: 1px solid #000; */
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    zoom: 1;
+    *display: inline;
+    _height: 100px;
+}
+/* Formatting for each item in a 2D grid. This is used typically in the downloads section. */
+.mygriditem
+{
+    font-size: 10pt;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+.mygriditem img
+{
+    text-align: center;
+    height:100px;
+    width:auto;
+    border: 0px solid #eee;
+    box-shadow: 0px 0px 0px #444444;
+}
+
