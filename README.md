@@ -1,13 +1,18 @@
 # MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.11.0-%23EE4C2C.svg?style=&logo=PyTorch&logoColor=white)](https://pytorch.org/)
 [![Python](https://img.shields.io/badge/Python-3.7%20|%203.8%20|%203.9-blue.svg?style=&logo=python&logoColor=ffdd54)](https://www.python.org/downloads/)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/mevis-a-large-scale-benchmark-for-video/referring-video-object-segmentation-on-mevis)](https://paperswithcode.com/sota/referring-video-object-segmentation-on-mevis?p=mevis-a-large-scale-benchmark-for-video)
+[![Dataset on HF](https://huggingface.co/datasets/huggingface/badges/resolve/main/dataset-on-hf-sm.svg)](https://huggingface.co/datasets/FudanCVL/MeViSv2)
 
-**[🏠[Project page]](https://henghuiding.github.io/MeViS/)** &emsp; **[📄[arXiv]](https://arxiv.org/abs/2308.08544)**  &emsp; **[📄[PDF]](https://drive.google.com/file/d/1WRanGRaYPpaNfrwq4xRq0sfmiJLSr9-b/view?usp=sharing)** &emsp; **[🔥[Dataset Download]](https://codalab.lisn.upsaclay.fr/competitions/15094)** &emsp; **[🔥[Evaluation Server]](https://codalab.lisn.upsaclay.fr/competitions/15094)**
+**[🏠[Project page]](https://henghuiding.github.io/MeViS/)**&emsp; **[📄[arXiv]](https://arxiv.org/abs/2308.08544)** &emsp; **[💾[Evaluation Server v1 (legacy)]](https://www.codabench.org/competitions/11420/)**&emsp; **[🔥[Evaluation Server v2]](https://www.codabench.org/competitions/11420/)**
 
-This repository contains code for **ICCV2023** paper:
+This repository contains code for **ICCV2023** and **TPAMI 2025** paper:
+
+> [MeViS: A Multi-Modal Dataset for Referring Motion Expression Video Segmentation](https://ieeexplore.ieee.org/abstract/document/11130435)  
+> Henghui Ding, Chang Liu, Shuting He, Kaining Ying, Xudong Jiang, Chen Change Loy, Yu-Gang Jiang
+> TPAMI 2025
+
 > [MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions](https://arxiv.org/abs/2308.08544)  
-> Henghui Ding,  Chang Liu,  Shuting He,  Xudong Jiang,  Chen Change Loy  
+> Henghui Ding, Chang Liu, Shuting He, Xudong Jiang, Chen Change Loy  
 > ICCV 2023
 
 <table border=1 frame=void>
@@ -20,15 +25,13 @@ This repository contains code for **ICCV2023** paper:
 
 ### Abstract
 
-This work strives for motion expressions guided video segmentation, which focuses on segmenting objects in video content based on a sentence describing the motion of the objects. Existing referring video object segmentation datasets downplay the importance of motion in video content for language-guided video object segmentation. To investigate the feasibility of using motion expressions to ground and segment objects in videos, we propose a large-scale dataset called MeViS, which contains numerous motion expressions to indicate target objects in complex environments. The goal of MeViS benchmark is to provide a platform that enables the development of effective language-guided video segmentation algorithms that leverage motion expressions as a primary cue for object segmentation in complex video scenes.
+This paper proposes a large-scale multi-modal dataset for referring motion expression video segmentation, focusing on segmenting and tracking target objects in videos based on language description of objects’ motions. Existing referring video segmentation datasets often focus on salient objects and use language expressions rich in static attributes, potentially allowing the target object to be identiﬁed in a single frame. Such datasets underemphasize the role of motion in both videos and languages. To explore the feasibility of using motion expressions and motion reasoning clues for pixel-level video understanding, we introduce MeViS, a dataset containing 33,072 human-annotated motion expressions in both text and audio, covering 8,171 objects in 2,006 videos of complex scenarios. We benchmark 15 existing methods across 4 tasks supported by MeViS, including 6 referring video object segmentation (RVOS) methods, 3 audio-guided video object segmentation (AVOS) methods, 2 referring multi-object tracking (RMOT) methods, and 4 video captioning methods for the newly introduced referring motion expression generation (RMEG) task. The results demonstrate weaknesses and limitations of existing methods in addressing motion expression-guided video understanding. We further analyze the challenges and propose an approach LMPM++ for RVOS/AVOS/RMOT that achieves new state-of-the-art results. Our dataset provides a platform that facilitates the development of motion expression-guided video understanding algorithms in complex video scenes.
 
 <div align="center">
   <img src="https://github.com/henghuiding/MeViS/blob/page/static/DemoImages/teaser.png?raw=true" width="100%" height="100%"/>
 </div>
-<p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 1. Examples of video clips from <b>M</b>otion <b>e</b>xpressions <b>Vi</b>deo <b>S</b>egmentation (<b>MeViS</b>) are provided to illustrate the dataset's nature and complexity. <font color="#FF6403">The expressions in MeViS primarily focus on motion attributes and the referred target objects that cannot be identified by examining a single frame solely</font>. For instance, the first example features three parrots with similar appearances, and the target object is identified as <i>"The bird flying away"</i>. This object can only be recognized by capturing its motion throughout the video.</p>
 
-
-
+<p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 1. Examples from <b>M</b>otion <b>e</b>xpressions <b>Vi</b>deo <b>S</b>egmentation (<b>MeViS</b>) showing the dataset’s nature and complexity. The selected target objects are masked in <font color="#FF6403">orange ▇</font>. The expressions in MeViS primarily focus on motion attributes, making it impossible to identify the target object from a single frame. For example, the ﬁrst example has three parrots with similar appearances, and the target object is identiﬁed as “<i>The bird ﬂying away</i>”. This object can only be recognized by capturing its motion throughout the video. The updated MeViS 2024 further provides motion-reasoning and no-target expressions, adds audio expressions alongside text, and provides mask and bounding box trajectory annotations.</p>
 
 <table border="0.6">
 <div align="center">
@@ -45,6 +48,9 @@ This work strives for motion expressions guided video segmentation, which focuse
         <th align="center" bgcolor="BBBBBB">Obj/Video</th>
         <th align="center" bgcolor="BBBBBB">Obj/Expn</th>
         <th align="center" bgcolor="BBBBBB">Target</th>
+        <th align="center" bgcolor="BBBBBB">Multi-target</th>
+        <th align="center" bgcolor="BBBBBB">No-target</th>
+        <th align="center" bgcolor="BBBBBB">Audio</th>
     </tr>
     <tr>
       <td align="right"><a href="https://kgavrilyuk.github.io/publication/actor_action/" target="_blank">A2D&nbsp;Sentence</a></td>
@@ -56,6 +62,9 @@ This work strives for motion expressions guided video segmentation, which focuse
       <td align="center">1.28</td>
       <td align="center">1</td>
       <td align="center">Actor</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
     </tr>
     <tr>
       <td align="right" bgcolor="ECECEC"><a href="https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/video-segmentation/video-object-segmentation-with-language-referring-expressions" target="_blank">DAVIS17-RVOS</a></td>
@@ -67,6 +76,9 @@ This work strives for motion expressions guided video segmentation, which focuse
       <td align="center" bgcolor="ECECEC">2.27</td>
       <td align="center" bgcolor="ECECEC">1</td>
       <td align="center" bgcolor="ECECEC">Object</td>
+      <td align="center" bgcolor="ECECEC">-</td>
+      <td align="center" bgcolor="ECECEC">-</td>
+      <td align="center" bgcolor="ECECEC">-</td>
     </tr>
     <tr>
       <td align="right"><a href="https://youtube-vos.org/dataset/rvos/" target="_blank">ReferYoutubeVOS</a></td>
@@ -78,9 +90,12 @@ This work strives for motion expressions guided video segmentation, which focuse
       <td align="center">1.86</td>
       <td align="center">1</td>
       <td align="center">Object</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
     </tr>
     <tr>
-      <td align="right" bgcolor="E5E5E5"><b>MeViS (ours)</b></td>
+      <td align="right" bgcolor="E5E5E5"><b>MeViS 2023</b></td>
       <td align="center" bgcolor="E5E5E5"><b>ICCV&nbsp;2023</b></td>
       <td align="center" bgcolor="E5E5E5"><b>2,006</b></td>
       <td align="center" bgcolor="E5E5E5"><b>8,171</b></td>
@@ -89,6 +104,23 @@ This work strives for motion expressions guided video segmentation, which focuse
       <td align="center" bgcolor="E5E5E5"><b>4.28</b></td>
       <td align="center" bgcolor="E5E5E5"><b>1.59</b></td>
       <td align="center" bgcolor="E5E5E5"><b>Object(s)</b></td>
+      <td align="center" bgcolor="E5E5E5">7,539</td>
+      <td align="center" bgcolor="E5E5E5">-</td>
+      <td align="center" bgcolor="E5E5E5">-</td>
+    </tr>
+    <tr>
+      <td align="right"><b>MeViS 2024</b></td>
+      <td align="center"><b>TPAMI</b></td>
+      <td align="center"><b>2,006</b></td>
+      <td align="center"><b>8,171</b></td>
+      <td align="center"><b>33,072</b></td>
+      <td align="center"><b>443k</b></td>
+      <td align="center"><b>4.28</b></td>
+      <td align="center"><b>1.58</b></td>
+      <td align="center"><b>Object(s)</b></td>
+      <td align="center">8,028</td>
+      <td align="center">3,503</td>
+      <td align="center">33,072</td>
     </tr>
   </tbody>
   <colgroup>
@@ -104,33 +136,33 @@ This work strives for motion expressions guided video segmentation, which focuse
   </colgroup>
 </table>
 
-## MeViS Dataset Download
-
-⬇️ [Download the dataset from ️here☁️](https://codalab.lisn.upsaclay.fr/competitions/15094). 
+## MeViS v2 Dataset
 
 
 **Dataset Split**
-* 2,006 videos & 28,570 sentences in total;
-* **Train set:** 1662 videos & 23,051 sentences, used for training;
-* **Val<sup>u</sup> set:** 50 videos & 793 sentences, used for offline evaluation (e.g., ablation study) by users during training;
-* **Val set:** 140 videos & 2,236 sentences, used for [**CodaLab online evaluation**](https://codalab.lisn.upsaclay.fr/competitions/15094);
-* **Test set:** 154 videos & 2,490 sentences (not released yet), used for evaluation during the competition periods;
+
+- 2,006 videos & 33,458 sentences in total;
+- **Train set:** 1662 videos & 27,502 sentences, used for training;
+- **Val<sup>u</sup> set:** 50 videos & 907 sentences, ground-truth provided, used for offline self-evaluation (e.g., ablation study) during training;
+- **Val set:** 140 videos & 2,523 sentences, ground-truth **not** provided, used for [**CodaLab online evaluation**](https://www.codabench.org/competitions/11420/);
+- **Test set:** Will be progressively and selectively released and used for evaluation during the competition periods ([PVUW](https://pvuw.github.io/), [LSVOS](https://lsvos.github.io/));
+
 It is suggested to report the results on **Val<sup>u</sup> set** and **Val set**.
-
-
 
 ## Online Evaluation
 
-Please submit your results of **Val set** on 
- - 💯 [**CodaLab**](https://codalab.lisn.upsaclay.fr/competitions/15094).
+Please submit your results of **Val set** on
+
+- 💯 v1 server (Closing Soon): [**CodaLab**](https://codalab.lisn.upsaclay.fr/competitions/15094)
+- 💯 v2 server: [**CodaBench**](https://www.codabench.org/competitions/11420/).
 
 It is strongly suggested to first evaluate your model locally using the **Val<sup>u</sup>** set before submitting your results of the **Val** to the online evaluation system.
 
 ## File Structure
 
-The dataset follows a similar structure as [Refer-YouTube-VOS](https://youtube-vos.org/dataset/rvos/). Each split of the dataset consists of three parts: `JPEGImages`, which holds the frame images,  `meta_expressions.json`, which provides referring expressions and metadata of videos, and `mask_dict.json`, which contains the ground-truth masks of objects. Ground-truth segmentation masks are saved in the format of COCO RLE, and expressions are organized similarly like Refer-Youtube-VOS.
+The dataset follows a similar structure as [Refer-YouTube-VOS](https://youtube-vos.org/dataset/rvos/). Each split of the dataset consists of three parts: `JPEGImages`, which holds the frame images, `meta_expressions.json`, which provides referring expressions and metadata of videos, and `mask_dict.json`, which contains the ground-truth masks of objects. Ground-truth segmentation masks are saved in the format of COCO RLE, and expressions are organized similarly like Refer-Youtube-VOS.
 
-Please note that while annotations for all frames in the **Train** set and the **Val<sup>u</sup>** set are provided, the **Val** set only provide frame images and referring expressions for inference. 
+Please note that while annotations for all frames in the **Train** set and the **Val<sup>u</sup>** set are provided, the **Val** set only provide frame images and referring expressions for inference.
 
 ```
 mevis
