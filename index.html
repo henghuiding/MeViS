@@ -1,487 +1,613 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <link rel="author" href="https://henghuiding.github.io/MeViS">
-  <title>MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions</title>
-  <meta name="description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
-  <meta name="keywords" content="MeViS; Video Segmentation with Motion Expressions; Referring Video Segmentation; Generalized Referring Expression Segmentation; MeViS Dataset; ICCV 2023; Henghui Ding; Nanyang Technological University; Computer Vision">
-  
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
-  <meta property="og:title" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions"/>
-  <meta property="og:description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions"/>
-  <meta property="og:url" content="https://henghuiding.github.io/MeViS"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MeViS: A Multi-Modal Dataset for Referring Motion Expression Video Segmentation
+</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
 
-  <meta name="twitter:title" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
-  <meta name="twitter:description" content="MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="MeViS; Referring Image Segmentation; Generalized Referring Expression Segmentation; Generalized Referring Expression Comprehension; MeViS Dataset; ICCV 2023; ; Henghui Ding; Nanyang Technological University; Computer Vision">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  
-  <link rel="icon" type="image/x-icon" href="static/favicon_io/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="static/favicon_io/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="static/favicon_io/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="static/favicon_io/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-  <meta name="google-site-verification" content="RHqlM-yRssUYgbykhtd0uguPnqkhTvwJw-aLE04B4KQ" />
+  <!-- =======================================================
+  * Template Name: Squadfree
+  * Template URL: https://bootstrapmade.com/squadfree-free-bootstrap-template-creative/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
-<body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://henghuiding.github.io/">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename" style="text-transform: none;">MeViS</h1>
       </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Challenges
-        </a>
-        <div class="navbar-dropdown">
-           <a class="navbar-item" href="https://henghuiding.github.io/MOSE/ChallengeCVPR2024">
-            1st MOSE Challenge on CVPR 2024
-          </a>
-          <a class="navbar-item" href="https://henghuiding.github.io/MeViS/ChallengeCVPR2024">
-            1st MeViS Challenge on CVPR 2024
-          </a>
-          <a class="navbar-item" href="https://henghuiding.github.io/MOSE">
-            MOSE Dataset Page
-          </a>
-          <a class="navbar-item" href="https://henghuiding.github.io/MeViS">
-            MeViS Dataset Page
-          </a>
-          <a class="navbar-item" href="https://henghuiding.github.io/GRES">
-            GRES Dataset Page
-          </a>
-        </div>
-      </div>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">Introduction</a></li>
+          <li><a href="#stats">Statistics</a></li>
+          <li><a href="#dataset">Dataset</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#citation">Citation</a></li>
+          <li class="dropdown"><a href="#"><span>Links</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a rel="nofollow noopener noreferrer" target="_blank" href="MeViSv1/index.html">MeViS&#8198;v1</a></li>
+              <li><a rel="nofollow noopener noreferrer" target="_blank" href="https://mose.video/">MOSE</a></li>
+              <li><a rel="nofollow noopener noreferrer" target="_blank" href="https://lsvos.github.io/">LSVOS Challenge</a></li>
+              <li><a rel="nofollow noopener noreferrer" target="_blank" href="https://pvuw.github.io/">PVUW Challenge</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
     </div>
-  </div>
-</nav>
+  </header>
 
+  <main class="main">
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h2 class="title is-2 publication-title">MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions</h2>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-                <span class="author-block">
-                <a href="https://henghuiding.github.io/" target="_blank">Henghui Ding</a>,&nbsp;</span>
-                <span class="author-block">
-                  <a href="">Chang Liu</a>,&nbsp;</span>
-                <span class="author-block">
-                <a href="https://heshuting555.github.io/" target="_blank">Shuting He</a>,&nbsp;</span>
-                <span class="author-block">
-                <a href="https://personal.ntu.edu.sg/exdjiang/" target="_blank">Xudong Jiang</a>,&nbsp;</span>
-                <span class="author-block">
-                <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a></span>
-                  </div>
+    <!-- Hero Section -->
+    <section id="hero" class="hero section accent-background">
 
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">
-                      Nanyang Technological University
-                  </div>
+      <img src="images/main_background.jpg" alt="" data-aos="fade-in">
 
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <h2 style="text-transform: none; color:#FFAC1C;">MeViS</h2>
+        <p>A Multi-Modal Dataset for Referring Motion Expression Video Segmentation</p>
+        <div class="icon-list">
+          <a rel="nofollow noopener noreferrer" target="_blank" href="https://ieeexplore.ieee.org/abstract/document/11130435" class="hero-btn align-self-center align-self-l-start"><i class="bi bi-file-earmark-text"></i>&nbsp;<span>Paper</span> <i class="bi bi-chevron-right"></i></a>
+          <a href="#dataset" class="hero-btn align-self-center align-self-l-start"><i class="bi bi-cloud-arrow-down"></i>&nbsp;<span>Download</span> <i class="bi bi-chevron-right"></i></a>
+          <a rel="nofollow noopener noreferrer" target="_blank" href="https://www.codabench.org/competitions/11420/" class="hero-btn align-self-center align-self-l-start"><i class="bi bi-check-circle"></i>&nbsp;<span>Evaluation&nbsp;Server</span> <i class="bi bi-chevron-right"></i></a>
+        </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-<!--                       <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span> -->
-                      <!-- </a> -->
-                    <!-- </span> -->
-                     <span class="link-block">
-                      <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Ding_MeViS_A_Large-scale_Benchmark_for_Video_Segmentation_with_Motion_Expressions_ICCV_2023_paper.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>ICCV'23 PDF</span>
-                    </a>
-                  </span>
+        <div class="icon-list mt-3">
+          <a rel="nofollow noopener noreferrer" target="_blank" href="MeViSv1/index.html" class="hero-btn align-self-center align-self-l-start"><span style="text-transform: none;">MeViS&#8198;v1</span> <i class="bi bi-chevron-right"></i></a>
 
+          <a rel="nofollow noopener noreferrer" target="_blank" href="https://mose.video/" class="hero-btn align-self-center align-self-l-start"><span>MOSE</span> <i class="bi bi-chevron-right"></i></a>
+          <a rel="nofollow noopener noreferrer" target="_blank" href="https://LSVOS.github.io/" class="hero-btn align-self-center align-self-l-start"><span>LSVOS@ICCV</span> <i class="bi bi-chevron-right"></i></a>
+          <a rel="nofollow noopener noreferrer" target="_blank" href="https://PVUW.github.io/" class="hero-btn align-self-center align-self-l-start"><span>PVUW@CVPR</span> <i class="bi bi-chevron-right"></i></a>
+        </div>
+        <a href="#about" class="btn-scroll" title="Scroll Down"><i class="bi bi-chevron-down"></i></a>
+      </div>
 
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <a href="https://github.com/henghuiding/MeViS" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code & Dataset</span>
-                  </a>
-                </span>
+    </section><!-- /Hero Section -->
 
-                <span class="link-block">
-                      <a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-<!--                       <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span> -->
-                      <span>🔥Eval Server</span>
-                    </a>
-                </span>
+    <!-- About Section -->
+    <section id="about" class="about section">
 
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/2308.08544" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Youtube link -->
-<!--                   <span class="link-block">
-                    <a href="https://www.youtube.com/watch?v=yZp-i7ZgU_M" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                    </span>
-                    <span>YouTube</span>
-                  </a>
-                </span> -->
-                
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="content col-xl-5 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
+            <h3>Introduction</h3>
+            <p>
+              <strong style="color:orange;">MeViS&#8198;v2</strong> a large-scale multi-modal dataset for <strong>referring motion expression video segmentation</strong>, focusing on segmenting and tracking target objects in videos based on language description of objects’ motions. Existing referring video segmentation datasets often focus on salient objects and use language expressions rich in static attributes, potentially allowing the target object to be identiﬁed in a single frame. Such datasets underemphasize the role of motion in both videos and languages. To explore the feasibility of using motion expressions and motion reasoning clues for pixel-level video understanding, we introduce the <strong>MeViS</strong> dataset.
+            </p>
+          </div>
+
+          <div class="col-xl-7" data-aos="fade-up" data-aos-delay="200">
+            <div class="row gy-4">
+
+            <div class="d-flex align-items-center justify-content-center flex-column">
+              <img src="images/teaser.jpeg" class="img-fluid rounded" alt="Teaser image">
+              <p class="mt-3 text-center">Figure:  Examples from <b>M</b>otion <b>e</b>xpressions <b>Vi</b>deo <b>S</b>egmentation (<b>MeViS</b>) showing the dataset's nature and complexity. The selected target objects are masked in <span style="display: inline-block; width: 12px; height: 12px; background-color: orange; margin-left: 4px; vertical-align: middle; border-radius: 2px;"></span> <span style="color:orange;">orange</span>.</p>
+            </div>
+
             </div>
           </div>
+
+
         </div>
+
       </div>
-    </div>
-  </div>
-</section>
+
+    </section><!-- /About Section -->
 
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <center><img src="static/DemoImages/teaser.png" border="0" width="100%"></center>
-      <!-- <h2 class="subtitle has-text-centered"> -->
-        <div align="center"><p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 1. Examples of video clips from <b>M</b>otion <b>e</b>xpressions <b>Vi</b>deo <b>S</b>egmentation (<b>MeViS</b>) are provided to illustrate the dataset's nature and complexity. The selected target objects are masked in <font color="#FF6403">orange ▇</font>. The expressions in MeViS primarily focus on motion attributes and the referred target object cannot be identified by examining a single frame solely.  For instance, the first example features three parrots with similar appearances, and the target object is identified as <i>"The bird flying away"</i>. This object can only be recognized by capturing its motion throughout the video.</p></div><br> 
-      <!-- </h2> -->
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p style="text-align:justify; text-justify:inter-ideograph;">
-      This paper strives for <b><font color="#FF6403">motion expressions guided video segmentation</font></b>, which focuses on segmenting objects in video content based on a sentence describing the motion of the objects. Existing referring video object datasets typically focus on salient objects and use language expressions that contain excessive static attributes that could potentially enable the target object to be identified in a single frame. These datasets downplay the importance of motion in video content for language-guided video object segmentation. To investigate the feasibility of using motion expressions to ground and segment objects in videos, we propose a large-scale dataset called <b><font color="#FF6403">MeViS</font></b>, which contains numerous motion expressions to indicate target objects in complex environments. We benchmarked 5 existing referring video object segmentation (RVOS) methods and conducted a comprehensive comparison on the MeViS dataset. The results show that current RVOS methods cannot effectively address motion expression-guided video segmentation. We further analyze the challenges and propose a baseline approach for the proposed MeViS dataset. The goal of our benchmark is to provide a platform that enables the development of effective language-guided video segmentation algorithms that leverage motion expressions as a primary cue for object segmentation in complex video scenes.
-    </p>
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-3 col-md-6 col-sm-6 portfolio-item isotope-item filter-app">
+              <a href="images/bird.webp" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><img src="images/bird.webp" class="img-fluid" alt=""></a>
+              <div class="mt-1 text-center">
+                <lottie-player src="images/wave.json" background="transparent" speed="1" style="height: 5em; display: block; margin:-1.5em 0;" loop autoplay></lottie-player><span style="font-style: italic;">"the bird flying away"</span>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-3 col-md-6 col-sm-6 portfolio-item isotope-item filter-app">
+              <a href="images/coin.webp" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><img src="images/coin.webp" class="img-fluid" alt=""></a>
+              <div class="mt-1 text-center">
+                <lottie-player src="images/wave.json" background="transparent" speed="1" style="height: 5em; display: block; margin:-1.5em 0;" loop autoplay></lottie-player><span style="font-style: italic;">"the parrot picking up a coin"</span>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-3 col-md-6 col-sm-6 portfolio-item isotope-item filter-app">
+              <a href="images/boat.webp" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><img src="images/boat.webp" class="img-fluid" alt=""></a>
+              <div class="mt-1 text-center">
+                <lottie-player src="images/wave.json" background="transparent" speed="1" style="height: 5em; display: block; margin:-1.5em 0;" loop autoplay></lottie-player><span style="font-style: italic;">"the boat that moves from left to right"</span>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-3 col-md-6 col-sm-6 portfolio-item isotope-item filter-app">
+              <a href="images/Cat.webp" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><img src="images/Cat.webp" class="img-fluid" alt=""></a>
+              <div class="mt-1 text-center">
+                <lottie-player src="images/wave.json" background="transparent" speed="1" style="height: 5em; display: block; margin:-1.5em 0;" loop autoplay></lottie-player><span style="font-style: italic;">"the cat playing with teaser"</span>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
         </div>
+
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
 
-<section class="section" id="Visualization">
-    <div class="container is-max-desktop content">
-      <h2 class="title">MeViS Setting</h2>
-     <center>
-      <!-- <caption><b>Examples of MeViS.</b><br></caption> -->
-        <img src="static/DemoImages/webp/bird.webp" alt="0442a954" width="224" height="126" />&nbsp;
-        <img src="static/DemoImages/webp/Cat.webp" alt="d321dde4" width="224" height="126" />&nbsp;
-        <img src="static/DemoImages/webp/coin.webp" alt="02221fb0" width="224" height="126" />&nbsp;
-        <img src="static/DemoImages/webp/boat.webp" alt="bbe97d18" width="224" height="126" />&nbsp;
+    </section><!-- /Portfolio Section -->
 
-      </center>
-      <p style="text-align:justify; text-justify:inter-ideograph;width:100%">Given a video and an expression describing the motion clues of the target object(s), MeViS requires to segment and track the target object(s) accuractely.</p>
+    <!-- Stats Section -->
+    <section id="stats" class="stats section light-background">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Statistics</h2>
+      </div><!-- End Section Title -->
 
-      <b>&#9734; Input</b>: a video and a sentence that refer to the target object(s).
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-      <br>
+        <div class="row gy-4">
 
-      <b>&#9734; Output</b>: video segmentation mask for the target object(s).
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-chat-quote"></i>
+              <span data-purecounter-start="0" data-purecounter-end="33072" data-purecounter-duration="1" data-purecounter-separator="true" class="purecounter"></span>
+              <p>Human-annotated motion <strong>Expressions</strong>, each with both text and audio</p>
+            </div>
+          </div><!-- End Stats Item -->
 
-      <br>
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-camera-reels"></i>
+              <span data-purecounter-start="0" data-purecounter-end="2006" data-purecounter-duration="1" data-purecounter-separator="true" class="purecounter"></span>
+              <p><strong>Videos</strong> <span>of dense scenarios</span></p>
+            </div>
+          </div><!-- End Stats Item -->
 
-      <b>&#9734; Expression</b>: especially focus on describing motions, which may span <u>several frames or hundreds of frames</u>.
-      <br>
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-bounding-box-circles"></i>
+              <span data-purecounter-start="0" data-purecounter-end="8171" data-purecounter-duration="1" data-purecounter-separator="true" class="purecounter"></span>
+              <p><strong>Objects</strong> <span>with complex motion</span></p>
+            </div>
+          </div><!-- End Stats Item -->
 
-      <b>&#9734; Target Object</b>: the number of target objects referred by sentence is any.
-    </div>
-</section>
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <i class="bi bi-person-bounding-box"></i>
+              <span data-purecounter-start="0" data-purecounter-end="443000" data-purecounter-duration="1" data-purecounter-separator="true" class="purecounter"></span>
+              <p>High-quality <strong>Mask annotations</strong></p>
+            </div>
+          </div><!-- End Stats Item -->
 
-
-<section class="section" id="DatasetStatistics">
-     <div class="container is-max-desktop content">
-      <h2 class="title">Dataset Statistics</h2>
-     <center>
-
-
-     <table border="0.6">
-      <caption><b>TABLE 1. Scale comparison between MeViS and existing language-guided video segmentation datasets.</b><br><font color="#737373">“Obj/Video”: average number of objects per video. “Obj/Expn”: average number of referred objects per expression.</font></caption>
- <!-- The newly built MOSE has the longest video duration and largest objects and annotations. More important, the most notable feature of MOSE is that it contains lots of crowds, occlusions, and disappearance-reappearance objects, which provide more complex scenarios for VOS. -->
-  <tbody>
-    <tr>
-        <th align="right" bgcolor="BBBBBB">Dataset</th>
-        <th align="center" bgcolor="BBBBBB">Pub. & Year</th>
-        <th align="center" bgcolor="BBBBBB">Videos</th>
-        <th align="center" bgcolor="BBBBBB">Object</th>
-        <th align="center" bgcolor="BBBBBB">Expression</th>
-        <th align="center" bgcolor="BBBBBB">Mask</th>
-        <th align="center" bgcolor="BBBBBB">Obj/Video</th>
-        <th align="center" bgcolor="BBBBBB">Obj/Expn</th>
-        <th align="center" bgcolor="BBBBBB">Target</th>
-    </tr>
-    <tr>
-      <td align="right"><a href="https://kgavrilyuk.github.io/publication/actor_action/" target="_blank">A2D Sentence</a></td>
-      <td align="center">CVPR 2018</td>
-      <td align="center">3,782</td>
-      <td align="center">4,825</td>
-      <td align="center">6,656</td>
-      <td align="center">58k</td>
-      <td align="center">1.28</td>
-      <td align="center">1</td>
-      <td align="center">Actor</td>
-    </tr>
-    <tr>
-      <td align="right" bgcolor="ECECEC"><a href="https://kgavrilyuk.github.io/publication/actor_action/" target="_blank">J-HMDB Sentence</a></a></td>
-      <td align="center" bgcolor="ECECEC">CVPR 2018</td>
-      <td align="center" bgcolor="ECECEC">928</td>
-      <td align="center" bgcolor="ECECEC">928</td>
-      <td align="center" bgcolor="ECECEC">928</td>
-      <td align="center" bgcolor="ECECEC">31.8k</td>
-      <td align="center" bgcolor="ECECEC">1</td>
-      <td align="center" bgcolor="ECECEC">1</td>
-      <td align="center" bgcolor="ECECEC">Actor</td>
-    </tr>    
-    <tr>
-      <td align="right"><a href="https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/video-segmentation/video-object-segmentation-with-language-referring-expressions" target="_blank">DAVIS16-RVOS</td>
-      <td align="center">ACCV 2018</td>
-      <td align="center">50</td>
-      <td align="center">50</td>
-      <td align="center">100</td>
-      <td align="center">3.4k</td>
-      <td align="center">1</td>
-      <td align="center">n/a</td>
-      <td align="center">Object</td>
-    </tr>
-    <tr>
-      <td align="right" bgcolor="ECECEC"><a href="https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/video-segmentation/video-object-segmentation-with-language-referring-expressions" target="_blank">DAVIS17-RVOS</a></td>
-      <td align="center" bgcolor="ECECEC">ACCV 2018</td>
-      <td align="center" bgcolor="ECECEC">90</td>
-      <td align="center" bgcolor="ECECEC">205</td>
-      <td align="center" bgcolor="ECECEC">1,544</td>
-      <td align="center" bgcolor="ECECEC">13.5k</td>
-      <td align="center" bgcolor="ECECEC">2.27</td>
-      <td align="center" bgcolor="ECECEC">1</td>
-      <td align="center" bgcolor="ECECEC">Object</td>
-    </tr>
-    <tr>
-      <td align="right"><a href="https://youtube-vos.org/dataset/rvos/" target="_blank">Refer-Youtube-VOS</a></td>
-      <td align="center">ECCV 2020</td>
-      <td align="center">3,978</td>
-      <td align="center">7,451</td>
-      <td align="center">15,009</td>
-      <td align="center">131k</td>
-      <td align="center">1.86</td>
-      <td align="center">1</td>
-      <td align="center">Object</td>
-    </tr>
-    <tr>
-      <td align="right" bgcolor="E5E5E5"><b>MeViS (ours)</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>ICCV 2023</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>2,006</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>8,171</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>28,570</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>443k</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>4.28</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>1.59</b></td>
-      <td align="center" bgcolor="E5E5E5"><b>Object(s)</b></td>
-    </tr>
-  </tbody>
-  <colgroup>
-    <col>
-    <col>
-    <col>
-    <col>
-    <col>
-    <col>
-    <col>
-    <col>
-    <col>
-  </colgroup>
-</table>
-
- </center><br>
-<p style="text-align:justify; text-justify:inter-ideograph;width:100%">The newly built MeViS has the largest number of objects and language expressions. More importantly, MeViS focuses on segmenting objects in the videos indicated by motion expressions. The MeViS enables the investigation of the feasibility of using motion expressions for object segmentation and grounding in videos.</p>
-  </div>
-</section>
-
-
-<section class="section" id="Visualization">
-    <div class="container is-max-desktop content">
-      <h2 class="title">A Simple Baseline Approach</h2>
-     <center><img src="static/DemoImages/Framework.png" border="0" width="100%"></center><br>
-        <div align="center"><p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 2. The overview architecture of the proposed baseline approach Language-guided Motion Perception and Matching (<b>LMPM</b>). We first detect all possible target objects in each frame of the video and use object embeddings to represent them through Language-Guided Extractor. Then, Motion Perception is conducted on all the object embeddings of the video to grasp the global temporal context. By leveraging language queries and object embeddings with motion information, we generate object trajectories through a Transformer Decoder. Finally, we match the language features with the predicted object trajectories to identify the target object(s).</p></div><br> 
-    </div>
-</section>
-
-
-
-<section class="section" id="Experiments">
-  <div class="container is-max-desktop content">
-  <h2 class="title">Experiments</h2>
-    <!-- <center> -->
-     <p style="text-align:justify; text-justify:inter-ideograph;width:100%">We benchmark the state-of-the-art methods to the best of our knowledge, please see the paper for details. If your method is more powerful, please feel free to contract us for benchmark evaluation, we will update the results.</p><br>
-
-     <center><caption><b>TABLE 1. MeViS Benchmark Results.</b></caption></center>
-     <center><img src="static/DemoImages/Table1.png" border="0" width="50%"></center><br>
-
-    <!-- </center> -->
-    </div>
-</section>
-
-<section class="section" id="Downloads">
-  <div class="container is-max-desktop content">
-  <h2 class="title">Downloads & Evaluation</h2>
-    <center>
-      <ul>
-        <li class="grid">
-          <div class="griditem">
-        <a href="https://drive.google.com/file/d/1WRanGRaYPpaNfrwq4xRq0sfmiJLSr9-b/view?usp=sharing" target="_blank" class="imageLink"><img src="static/DemoImages/MeViS.png"></a><br><a href="https://drive.google.com/file/d/1WRanGRaYPpaNfrwq4xRq0sfmiJLSr9-b/view?usp=sharing" class="imageLink"  target="_blank">Technical Report</a>
         </div>
-          </li>
-          <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 
-        <li li class="mygrid">
-          <div class="mygriditem">
-        <a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank" class="imageLink"><img src="static/DemoImages/codalab.png"></a><br><a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank">Online Evaluation (🔥ready now!)</a>
+      </div>
+
+    </section><!-- /Stats Section -->
+
+
+
+
+    <!-- Services Section -->
+    <section id="tasks" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Tasks</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="content col-xl-12 flex-column" data-aos="fade-up" data-aos-delay="100">
+            <p>We benchmark 15 existing methods across 4 tasks supported by MeViS, including 6 <strong>referring video object segmentation (RVOS)</strong> methods, 3 <strong>audio-guided video object segmentation (AVOS)</strong> methods, 2 <strong>referring multi-object tracking (RMOT)</strong> methods, and 4 video captioning methods for the newly introduced <strong>referring motion expression generation (RMEG)</strong> task. The results demonstrate weaknesses and limitations of existing methods in addressing motion expression-guided video understanding.
+            </p>
+
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="200">
+            <div class="row gy-4">
+
+              <div class="col-md-3 col-sm-6 icon-box position-relative">
+                <!-- <i class="bi bi-briefcase"></i> -->
+                <h4><a class="stretched-link">RVOS</a></h4>
+                <p>Referring Video Object Segmentation</p>
+              </div><!-- Icon-Box -->
+
+              <div class="col-md-3 col-sm-6 icon-box position-relative">
+                <!-- <i class="bi bi-gem"></i> -->
+                <h4><a class="stretched-link">AVOS</a></h4>
+                <p>Audio-guided Video Object Segmentation</p>
+              </div><!-- Icon-Box -->
+
+              <div class="col-md-3 col-sm-6 icon-box position-relative">
+                <!-- <i class="bi bi-broadcast"></i> -->
+                <h4><a class="stretched-link">RMOT</a></h4>
+                <p>Referring Multi-Object Tracking</p>
+              </div><!-- Icon-Box -->
+
+              <div class="col-md-3 col-sm-6 icon-box position-relative">
+                <!-- <i class="bi bi-easel"></i> -->
+                <h4><a class="stretched-link">RMEG</a></h4>
+                <p>Referring Motion Expression Generation</p>
+              </div><!-- Icon-Box -->
+
+            </div>
+          </div>
+
         </div>
-        </li>
 
-        <li class="mygrid">
-          <div class="mygriditem">
-        <a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank" class="imageLink"><img src="static/DemoImages/dataset.png"></a><br><a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank">🔥Dataset (ready now!)</a>
-        </div>
-          </li>
+      </div>
 
-        </ul><br><br>
+    </section><!-- /Services Section -->
+
+
+
+    <!-- Services Section -->
+    <section id="dataset" class="services section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Dataset</h2>
+      </div><!-- End Section Title -->
       
-    </center>
 
-    <font style="line-height:2;">
-    ● We use Region Jaccard <b><i>J</i></b>, Boundary F measure <b><i>F</i></b>, and their mean <b><i>J&F</i></b> as the evaluation metrics.<br>
+      <div class="container">
 
-    ● For the validation sets, the expressions are released to indicate the objects that are considered in evaluation. <br>
+        <div class="row gy-4">
 
-    ● The validation set online evaluation server is <a href="https://codalab.lisn.upsaclay.fr/competitions/15094" target="_blank">[here]</a> for daily evaluation. <br>
-
-    ● The test set online evaluation server will be open during the competition period only. <br>
-
-    <!-- ● <font color="#FF6403">For urgent cases before online server is ready, you could send your predictions to us and we will return the <b><i>J&F</i></b> results to you.</font> -->
-    </font>
-    </div>
-</section>
+          <div class="content col-xl-12 flex-column" data-aos="fade-up" data-aos-delay="100">
+            <h3>Dataset Download</h3>
+            <p>
+              The dataset is available for non-commercial research purpose only. Please follow the following links to download.
+            </p>
+          </div>
 
 
+          <div class="col-xl-6 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <img src="images/hf-logo-pirate.svg" alt="Hugging Face logo" class="hf-icon"><i></i>
+              </div>
+              <h4><a rel="nofollow noopener noreferrer" target="_blank" class="stretched-link" href="https://huggingface.co/datasets/FudanCVL/MeViSv2">Hugging Face</a></h4>
+            </div>
+          </div><!-- End Service Item -->
 
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      Please consider to cite MeViS if it helps your research.
-      <pre><code>@inproceedings{MeViS,
+          <div class="col-xl-6 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-cloud-arrow-down"></i></div>
+                <h4><a rel="nofollow noopener noreferrer" target="_blank" class="stretched-link" href="https://drive.google.com/drive/folders/1cft6BC3xBe6HFsZOLA0riRwoUpKPP90-?usp=drive_link">Google Drive</a></h4>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="content col-xl-12 flex-column mt-5" data-aos="fade-up" data-aos-delay="100">
+            <h3>Dataset Split</h3>
+            <p></p>
+            <p>
+            <ul>
+              <li>2,006 videos &amp; 33,072 sentences in total;</li>
+              <li><strong>Train set:</strong> 1662 videos &amp; 27,502 sentences, used for training;</li>
+              <li><strong>Val<sup>u</sup> set:</strong> 50 videos &amp; 907 sentences, ground-truth provided, used for offline
+                self-evaluation (e.g., ablation study) during training;</li>
+              <li><strong>Val set:</strong> 140 videos &amp; 2,523 sentences, ground-truth <strong>not</strong> provided, used for
+                <a rel="nofollow noopener noreferrer" target="_blank" href="https://www.codabench.org/competitions/11420/"><strong>Codabench online
+                    evaluation</strong></a>;</li>
+              <li><strong>Test set:</strong> Will be progressively and selectively released and used for evaluation during the
+                competition periods (<a rel="nofollow noopener noreferrer" target="_blank" href="https://pvuw.github.io/">PVUW</a>, <a rel="nofollow noopener noreferrer" target="_blank" href="https://lsvos.github.io/">LSVOS</a>);</li>
+            </ul>
+            </p>
+          </div>
+
+          <div class="content col-xl-12 flex-column mt-5" data-aos="fade-up" data-aos-delay="100">
+            <h3>Evaluation</h3>
+            <p>Please submit your results of <strong>Val set</strong> here:</p>
+          </div>
+        </div>
+
+        <div class="content col-xl-6 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <img src="images/Cha_Logo.png" alt="Codabench logo"  class="codabench-logo"><i></i>
+            </div>
+            <h4><a rel="nofollow noopener noreferrer" target="_blank" class="stretched-link" href="https://www.codabench.org/competitions/11420/">Codabench</a></h4>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="content col-xl-12 flex-column" data-aos="fade-up" data-aos-delay="100">
+          <p></p>
+          <p>It is strongly suggested to first evaluate your model locally using the <strong>Val<sup>u</sup></strong> set before submitting your results of the <strong>Val</strong> to the online evaluation system.</p>
+        </div>
+
+        <div class="content col-xl-12 flex-column mt-5" data-aos="fade-up" data-aos-delay="100">
+          <h3>Data Structure</h3>
+          <p>The dataset follows a similar structure as <a rel="nofollow noopener noreferrer" target="_blank" href="https://youtube-vos.org/dataset/rvos/">Refer-YouTube-VOS</a>. Each split of the dataset consists of three parts: <code>JPEGImages</code>, which holds the frame images, <code>meta_expressions.json</code>, which provides referring expressions and metadata of videos, and <code>mask_dict.json</code>, which contains the ground-truth masks of objects. Ground-truth segmentation masks are saved in the format of COCO RLE, and expressions are organized similarly like Refer-Youtube-VOS.</p>
+          <p>Please note that while annotations for all frames in the <strong>Train</strong> set and the <strong>Val<sup>u</sup></strong> set are provided, the <strong>Val</strong> set only provide frame images and referring expressions for inference.</p>
+
+          <pre><code>mevis
+├── train                       // Split Train
+│&nbsp;&nbsp; ├── JPEGImages
+│   │   ├── &lt;video #1  &gt;
+│   │   ├── &lt;video #2  &gt;
+│   │   └── &lt;video #...&gt;
+│   │
+│&nbsp;&nbsp; ├── mask_dict.json
+│&nbsp;&nbsp; └── meta_expressions.json
+│
+├── valid_u                     // Split Val^u
+│&nbsp;&nbsp; ├── JPEGImages
+│   │   └── &lt;video ...&gt;
+│   │
+│   ├── mask_dict.json
+│   └── meta_expressions.json
+│
+└── valid                       // Split Val
+ &nbsp;&nbsp; ├── JPEGImages
+    │   └── &lt;video ...&gt;
+    │
+ &nbsp;&nbsp; └── meta_expressions.json
+</code></pre>
+        </div>
+        </div>
+
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>People</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5 d-flex" style="justify-content: center;">
+
+          <div class="col-xl-3 col-md-3 col-sm-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="images/people/ding.gif" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+
+                <h4>Henghui Ding</h4>
+                <span>Fudan University</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-3 col-sm-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="images/people/liu.gif" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+
+                <h4>Chang Liu</h4>
+                <span>SUFE</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-3 col-sm-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="images/people/he.gif" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+
+                <h4>Shuting He</h4>
+                <span>SUFE</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-3 col-sm-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="images/people/ying.gif" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+
+                <h4>Kaining Ying</h4>
+                <span>Fudan University</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-3 col-sm-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="images/people/jiang.gif" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+
+                <h4>Xudong Jiang</h4>
+                <span>Nanyang Technological University</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-3 col-sm-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="images/people/loy.gif" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+
+                <h4>Chen Change Loy</h4>
+                <span>Nanyang Technological University</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-3 col-sm-4 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="images/people/yjiang.gif" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+
+                <h4>Yu-Gang Jiang</h4>
+                <span>Fudan University</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
+
+    <!-- Faq Section -->
+    <section id="citation" class="faq section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Citation</h2>
+        <p>Please consider to cite MeViS if it helps your research.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="citation-box" data-aos="fade-up" data-aos-delay="100">
+            <pre><code>@article{MeViSv2,
+  title={MeViS: A Multi-Modal Dataset for Referring Motion Expression Video Segmentation},
+  author={Ding, Henghui and Liu, Chang and He, Shuting and Ying, Kaining and Jiang, Xudong and Loy, Chen Change and Jiang, Yu-Gang},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2025},
+  publisher={IEEE}
+}
+@inproceedings{MeViS,
   title={{MeViS}: A Large-scale Benchmark for Video Segmentation with Motion Expressions},
   author={Ding, Henghui and Liu, Chang and He, Shuting and Jiang, Xudong and Loy, Chen Change},
   booktitle={ICCV},
   year={2023}
+}
+@inproceedings{GRES,
+  title={{GRES}: Generalized Referring Expression Segmentation},
+  author={Liu, Chang and Ding, Henghui and Jiang, Xudong},
+  booktitle={CVPR},
+  year={2023}
+}
+@article{VLT,
+  title={{VLT}: Vision-language transformer and query generation for referring segmentation},
+  author={Ding, Henghui and Liu, Chang and Wang, Suchen and Jiang, Xudong},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2023},
+  publisher={IEEE}
 }</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
+        </div><!-- End Cite Item-->
 
+        <div class="mt-1" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-7">
 
-
-<section class="section" id="License">
-  <div class="container is-max-desktop content">
-  <h2 class="title">License</h2>
-  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"  target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></br>
-MeViS is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0 License</a>. The data of MeViS is released for non-commercial research purposes only.
-  <!-- </center> -->
-    </div>
-</section>
-
-
-<a href="https://clustrmaps.com/site/1bw25" title="Visit tracker" target="_blank"><img src="//www.clustrmaps.com/map_v2.png?d=bXe9k5oa7NcoSkQtJPEpl9P9JtmMgn_Pqu1b2U5mjdA&cl=ffffff" height="1" width="1"/ style="display:block;margin-top:5px;margin-bottom:0px;margin-left:auto;text-align:right"></a>
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-
-            <center><font size=2>© Henghui Ding | Last updated: 16/8/2023</font></center>
-          </p>
-
+            <p class="mt-3 text-muted">A majority of videos in MeViS are from <a rel="nofollow noopener noreferrer" target="_blank" href="https://mose.video">MOSE: Complex Video Object Segmentation Dataset</a></p>
+          </div>
         </div>
+
+        <div class="citation-box" data-aos="fade-up" data-aos-delay="100">
+            <pre><code>@article{MOSEv2,
+  title={{MOSEv2}: A More Challenging Dataset for Video Object Segmentation in Complex Scenes},
+  author={Ding, Henghui and Ying, Kaining and Liu, Chang and He, Shuting and Jiang, Xudong and Jiang, Yu-Gang and Torr, Philip HS and Bai, Song},
+  journal={arXiv preprint arXiv:2508.05630},
+  year={2025}
+}
+@inproceedings{MOSE,
+  title={{MOSE}: A New Dataset for Video Object Segmentation in Complex Scenes},
+  author={Ding, Henghui and Liu, Chang and He, Shuting and Jiang, Xudong and Torr, Philip HS and Bai, Song},
+  booktitle={ICCV},
+  year={2023}
+}</code></pre>
+        </div><!-- End Cite Item-->
+      </div>
+        
+
+      </div>
+    </section><!-- /Faq Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container copyright text-center mt-4">
+      <a rel="license" target="_blank" data-spdx="CC-BY-NC-SA-4.0" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0"src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      <div class="mt-2">
+        <p>MeViS is licensed under a <a rel="license" data-spdx="CC-BY-NC-SA-4.0"href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA-4.0 License</a>. The data of MeViS is released for non-commercial research purpose only.</p>
       </div>
     </div>
-  </div>
-</footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+  </footer>
 
-    <!-- End of Statcounter Code -->
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  </body>
-  </html>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/lottie/lottie-player.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
