@@ -1,7 +1,7 @@
 # MeViS: A Large-scale Benchmark for Video Segmentation with Motion Expressions
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.11.0-%23EE4C2C.svg?style=&logo=PyTorch&logoColor=white)](https://pytorch.org/)
 [![Python](https://img.shields.io/badge/Python-3.7%20|%203.8%20|%203.9-blue.svg?style=&logo=python&logoColor=ffdd54)](https://www.python.org/downloads/)
-[![Dataset on HF](https://huggingface.co/datasets/huggingface/badges/resolve/main/dataset-on-hf-sm.svg)](https://huggingface.co/datasets/FudanCVL/MeViSv2)
+[![Dataset on HF](https://huggingface.co/datasets/huggingface/badges/resolve/main/dataset-on-hf-md.svg)](https://huggingface.co/datasets/FudanCVL/MeViSv2)
 
 **[🏠[Project page]](https://henghuiding.github.io/MeViS/)**&emsp; **[📄[arXiv]](https://arxiv.org/abs/2308.08544)** &emsp; **[💾[Evaluation Server v1 (legacy)]](https://www.codabench.org/competitions/11420/)**&emsp; **[🔥[Evaluation Server v2]](https://www.codabench.org/competitions/11420/)**
 
@@ -17,9 +17,9 @@ This repository contains code for **ICCV2023** and **TPAMI 2025** paper:
 
 <table border=1 frame=void>
   <tr>
-    <td><img src="https://github.com/henghuiding/MeViS/blob/page/GIF/bird.gif" width="245"></td>
-    <td><img src="https://github.com/henghuiding/MeViS/blob/page/GIF/Cat.gif" width="245"></td>
-    <td><img src="https://github.com/henghuiding/MeViS/blob/page/GIF/coin.gif" width="245"></td>
+    <td><img src="https://github.com/henghuiding/MeViS/blob/page/images/bird.webp" width="245"></td>
+    <td><img src="https://github.com/henghuiding/MeViS/blob/page/images/Cat.webp" width="245"></td>
+    <td><img src="https://github.com/henghuiding/MeViS/blob/page/images/coin.webp" width="245"></td>
   </tr>
 </table>
 
@@ -28,7 +28,7 @@ This repository contains code for **ICCV2023** and **TPAMI 2025** paper:
 This paper proposes a large-scale multi-modal dataset for referring motion expression video segmentation, focusing on segmenting and tracking target objects in videos based on language description of objects’ motions. Existing referring video segmentation datasets often focus on salient objects and use language expressions rich in static attributes, potentially allowing the target object to be identiﬁed in a single frame. Such datasets underemphasize the role of motion in both videos and languages. To explore the feasibility of using motion expressions and motion reasoning clues for pixel-level video understanding, we introduce MeViS, a dataset containing 33,072 human-annotated motion expressions in both text and audio, covering 8,171 objects in 2,006 videos of complex scenarios. We benchmark 15 existing methods across 4 tasks supported by MeViS, including 6 referring video object segmentation (RVOS) methods, 3 audio-guided video object segmentation (AVOS) methods, 2 referring multi-object tracking (RMOT) methods, and 4 video captioning methods for the newly introduced referring motion expression generation (RMEG) task. The results demonstrate weaknesses and limitations of existing methods in addressing motion expression-guided video understanding. We further analyze the challenges and propose an approach LMPM++ for RVOS/AVOS/RMOT that achieves new state-of-the-art results. Our dataset provides a platform that facilitates the development of motion expression-guided video understanding algorithms in complex video scenes.
 
 <div align="center">
-  <img src="https://github.com/henghuiding/MeViS/blob/page/static/DemoImages/teaser.png?raw=true" width="100%" height="100%"/>
+  <img src="https://github.com/henghuiding/MeViS/blob/page/images/teaser.jpeg?raw=true" width="100%" height="100%"/>
 </div>
 
 <p style="text-align:justify; text-justify:inter-ideograph;width:100%">Figure 1. Examples from <b>M</b>otion <b>e</b>xpressions <b>Vi</b>deo <b>S</b>egmentation (<b>MeViS</b>) showing the dataset’s nature and complexity. The selected target objects are masked in <font color="#FF6403">orange ▇</font>. The expressions in MeViS primarily focus on motion attributes, making it impossible to identify the target object from a single frame. For example, the ﬁrst example has three parrots with similar appearances, and the target object is identiﬁed as “<i>The bird ﬂying away</i>”. This object can only be recognized by capturing its motion throughout the video. The updated MeViS 2024 further provides motion-reasoning and no-target expressions, adds audio expressions alongside text, and provides mask and bounding box trajectory annotations.</p>
@@ -326,24 +326,25 @@ This project is based on [VITA](https://github.com/sukjunhwang/VITA), [GRES](htt
 Please consider to cite MeViS if it helps your research.
 
 ```latex
+@article{MeViSv2,
+  title={MeViS: A Multi-Modal Dataset for Referring Motion Expression Video Segmentation},
+  author={Ding, Henghui and Liu, Chang and He, Shuting and Ying, Kaining and Jiang, Xudong and Loy, Chen Change and Jiang, Yu-Gang},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2025},
+  publisher={IEEE}
+}
 @inproceedings{MeViS,
   title={{MeViS}: A Large-scale Benchmark for Video Segmentation with Motion Expressions},
   author={Ding, Henghui and Liu, Chang and He, Shuting and Jiang, Xudong and Loy, Chen Change},
   booktitle={ICCV},
   year={2023}
 }
-```
-
-```latex
 @inproceedings{GRES,
   title={{GRES}: Generalized Referring Expression Segmentation},
   author={Liu, Chang and Ding, Henghui and Jiang, Xudong},
   booktitle={CVPR},
   year={2023}
 }
-```
-
-```latex
 @article{VLT,
   title={{VLT}: Vision-language transformer and query generation for referring segmentation},
   author={Ding, Henghui and Liu, Chang and Wang, Suchen and Jiang, Xudong},
@@ -355,6 +356,12 @@ Please consider to cite MeViS if it helps your research.
     
 A majority of videos in MeViS are from [MOSE: Complex Video Object Segmentation Dataset](https://henghuiding.github.io/MOSE/).
 ```latex
+@article{MOSEv2,
+  title={{MOSEv2}: A More Challenging Dataset for Video Object Segmentation in Complex Scenes},
+  author={Ding, Henghui and Ying, Kaining and Liu, Chang and He, Shuting and Jiang, Xudong and Jiang, Yu-Gang and Torr, Philip HS and Bai, Song},
+  journal={arXiv preprint arXiv:2508.05630},
+  year={2025}
+}
 @inproceedings{MOSE,
   title={{MOSE}: A New Dataset for Video Object Segmentation in Complex Scenes},
   author={Ding, Henghui and Liu, Chang and He, Shuting and Jiang, Xudong and Torr, Philip HS and Bai, Song},
