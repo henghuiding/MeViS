@@ -853,7 +853,7 @@ section,
   color: color-mix(in srgb, white, transparent 10%);
   border-radius: 50px;
   transition: 0.3s;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   font-size: 13px;
   display: inline-flex;
