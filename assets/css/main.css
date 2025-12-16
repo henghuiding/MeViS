@@ -1026,6 +1026,23 @@ section,
   border-radius: 0px;
 }
 
+.services .service-item-disabled:hover:before {
+  background: #d0d0d0;
+  inset: 0;
+  border-radius: 0px;
+}
+
+.services .service-item-disabled .icon i{
+  color: var(--default-color);
+}
+
+.services .service-item-disabled:hover h4 a,
+.services .service-item-disabled:hover .icon i,
+.services .service-item-disabled:hover p {
+  color: var(--default-color);
+}
+
+
 /*--------------------------------------------------------------
 # Stats Section
 --------------------------------------------------------------*/
