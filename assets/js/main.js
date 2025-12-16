@@ -63,9 +63,14 @@
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        preloader.remove();
+      });
+    } else {
+      // DOM 已经就绪，直接移除
       preloader.remove();
-    });
+    }
   }
 
   /**
@@ -100,7 +105,12 @@
       mirror: false
     });
   }
-  window.addEventListener('load', aosInit);
+  // 在 DOM 内容就绪后初始化 AOS，这样能和 preloader 同步
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', aosInit);
+  } else {
+    aosInit();
+  }
 
   /**
    * Initiate Pure Counter
@@ -205,5 +215,81 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+
+  /**
+   * Lazy Loading for Images
+   */
+  function lazyLoadImages(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    
+    const lazyImages = section.querySelectorAll('img[data-src]');
+    
+    lazyImages.forEach((img) => {
+      const imageSrc = img.getAttribute('data-src');
+      if (imageSrc) {
+        const imageLoader = new Image();
+        imageLoader.onload = function() {
+          img.src = imageSrc;
+          img.classList.add('loaded');
+          img.removeAttribute('data-src');
+          // 移除加载中的占位符
+          const container = img.closest('.lazy-image-container');
+          if (container) {
+            container.classList.add('loaded');
+            container.style.background = 'transparent';
+          }
+        };
+        imageLoader.onerror = function() {
+          img.classList.add('loaded');
+          const container = img.closest('.lazy-image-container');
+          if (container) {
+            container.innerHTML = '<span style="color: #999;">图片加载失败</span>';
+          }
+        };
+        imageLoader.src = imageSrc;
+      }
+    });
+  }
+
+  function lazyLoadPortfolioImages() {
+    lazyLoadImages('portfolio');
+  }
+
+  // 等待 hero 背景图加载完，先加载 team section，最后加载 portfolio
+  const heroBg = document.getElementById('hero-bg');
+  if (heroBg) {
+    const startImageLoad = function() {
+      // 先加载 team section 的图片（优先级高）
+      setTimeout(function() { lazyLoadImages('team'); }, 100);
+      // 最后加载 portfolio 图片（优先级最低）
+      setTimeout(lazyLoadPortfolioImages, 500);
+    };
+
+    if (heroBg.complete) {
+      // 背景图已经在缓存中，直接开始加载
+      startImageLoad();
+    } else {
+      // 背景图加载完成后再开始加载
+      heroBg.addEventListener('load', startImageLoad, { once: true });
+      // 如果背景图加载失败，也不要一直卡着
+      heroBg.addEventListener('error', startImageLoad, { once: true });
+    }
+  } else {
+    // 找不到 hero 背景图时的兜底处理：回退到 DOMContentLoaded 触发
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        // 先加载 team section
+        setTimeout(function() { lazyLoadImages('team'); }, 100);
+        // 最后加载 portfolio
+        setTimeout(lazyLoadPortfolioImages, 500);
+      });
+    } else {
+      // 先加载 team section
+      setTimeout(function() { lazyLoadImages('team'); }, 100);
+      // 最后加载 portfolio
+      setTimeout(lazyLoadPortfolioImages, 500);
+    }
+  }
 
 })();

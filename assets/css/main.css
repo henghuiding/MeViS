@@ -1787,3 +1787,88 @@ section,
   border-radius: 8px;
   overflow-x: auto;
 }
+
+
+/*--------------------------------------------------------------
+# Lazy Loading Styles for Portfolio Section Only
+--------------------------------------------------------------*/
+#portfolio .lazy-image-container {
+  position: relative;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 400 / 224;
+  width: 100%;
+}
+#portfolio .lazy-image-container::before {
+  content: "Loading...";
+  position: absolute;
+  color: #999;
+  font-size: 14px;
+  z-index: 1;
+}
+#portfolio .lazy-image-container img {
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+}
+#portfolio .lazy-image-container img.loaded {
+  opacity: 1;
+  position: static;
+  z-index: auto;
+}
+#portfolio .lazy-image-container.loaded::before {
+  display: none;
+}
+#portfolio img.lazy-load {
+  background-color: #f0f0f0;
+}
+#portfolio img.lazy-load.loaded {
+  background-color: transparent;
+}
+
+/*--------------------------------------------------------------
+# Lazy Loading Styles for Team Section
+--------------------------------------------------------------*/
+#team .lazy-image-container {
+  position: relative;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+#team .lazy-image-container::before {
+  content: "Loading...";
+  position: absolute;
+  color: #999;
+  font-size: 14px;
+  z-index: 1;
+}
+#team .lazy-image-container img {
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+}
+#team .lazy-image-container img.loaded {
+  opacity: 1;
+  position: static;
+  z-index: auto;
+}
+#team .lazy-image-container.loaded::before {
+  display: none;
+}
+#team img.lazy-load {
+  background-color: #f0f0f0;
+}
+#team img.lazy-load.loaded {
+  background-color: transparent;
+}
